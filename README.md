@@ -1,0 +1,1 @@
+This project uses a statistical arbitrage strategy for Boeing (BA) and Airbus (AIR.PA). This strategy is based on mean reversion where we bet that two historically correlated stocks revert to a long term equilibrium. 
