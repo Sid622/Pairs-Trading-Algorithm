@@ -1,51 +1,32 @@
 Pairs Trading Algorithim
-This project implements a statistical arbitrage strategy using Boeing (BA) and Airbus (AIR.PA). 
+This project performs a statistical arbitrage strategy between Boeing (BA) and Airbus (AIR.PA). It uses a rolling hedge ratio calculated with a rolling OLS regression and executes trades based on Z-score mean reversion.
 
 Overview
-Portfolio Optimization: Using historical price data, we calculate expected returns and covariance to construct a minimum volatility portfolio with constrained weights.
+1. Dynamic hedging - Uses a rolling OLS(Ordinary Least Squares Regression) to calculate the hedge ratio.
+2. Stationarity Testing - Uses the ADF(Augmented Dickey-Fuller) test to determine if the following assets having mean-reverting properties.
+3. Signal Generation - Developed signals that execute a buy or sell if the z-score of the spread goes above or below a certain point.
+   Short spread: Enter when Z > 1.5 (Boeing is overvalued relative to Airbus)
+   Long spread: Enter when Z < -1.5 (Boeing is undervalued to Airbus)
+   Exit: Close positions when the Z-score returns to a neutral zone (between -0.25 and 0.25)
 
-Principal Component Analysis (PCA): We reduce the dimensionality of stock return data to identify dominant patterns (factors) explaining the majority of variance.
+Key Features
+1. Rolling Beta Calculation:
+This script recalculates the hedge ratio over a 252-day rolling window which accounts for shifts in the market.
 
-Factor Interpretation: We compute PCA factor returns and correlate them with sector ETFs to interpret each factor’s economic meaning.
-
-
+3. Risk Metrics Calculates:
+Cumulative Returns: Growth of capital over the testing period
+Sharpe Ratio: Risk-adjusted return
+Z-score visualization: Tracking of entry and exit points
 
 Libraries:
-
 yfinance
 pandas
 numpy
 matplotlib
 statsmodels.api
 
-Main Logic: 
-
-Step 1: Data Collection
-Daily closing prices downloaded from 2010-present
-
-Step 2: Rolling Hedge Ratio
-Uses 252-day rolling OLS regression
-Boeing regressed on Airbus
-
-Step 3: 
-
-Interpretation and Limitations
-Based on the heatmap correlations:
-
-PC1: Likely a broad market factor (general market movements).
-PC2: Likely represents the tech sector.
-PC3: Likely corresponds to the energy sector.
-Note on nonlinearities:
-This PCA and correlation analysis assumes linear relationships between returns and factors. Nonlinear dependencies are not captured, and thus the heatmap interpretation might miss complex interactions. Handling nonlinearities requires more advanced methods and is beyond this project’s scope.
-
-How to Run
-Clone this repository.
-Install required packages.
-Change your portfolio/metric you're optimizing from the full code
-Run the script.
-Analyze visual outputs and interpretation text.
-References
-PyPortfolioOpt documentation
-scikit-learn PCA
-Yahoo Finance (yfinance)
-Seaborn heatmap
+Getting Started
+1. Clone the repository
+2. Run the script to fetch live data from yfinance
+3. View Z-score plot to see trading opportunities
+4. Analyze cumulative returns plot to evalulate strategy viability
