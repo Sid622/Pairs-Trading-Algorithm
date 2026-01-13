@@ -18,7 +18,8 @@ Cumulative Returns: Growth of capital over the testing period
 
 Sharpe Ratio: 2.11
 
-Z-score visualization: <img width="383" height="206" alt="image" src="https://github.com/user-attachments/assets/f553c128-c76b-4e44-948d-d757d27aa409" />
+Z-score visualization: 
+<img width="383" height="206" alt="image" src="https://github.com/user-attachments/assets/f553c128-c76b-4e44-948d-d757d27aa409" />
 
 
 Libraries:
