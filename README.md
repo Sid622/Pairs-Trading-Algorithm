@@ -1,21 +1,23 @@
 Pairs Trading Algorithim
-This project performs a statistical arbitrage strategy between General Dynamics (GD) and Lockheed Martin (LMT). It uses a rolling hedge ratio calculated with a rolling OLS regression and executes trades based on Z-score mean reversion.
+This project performs a statistical arbitrage strategy between General Dynamics (GD) and Lockheed Martin (LMT). It identifies divergences in the historical relationship between these two defense stocks. When the price spread deviates greatly from its moving average, the algorithim enters a position, betting on mean reversion. 
 
-Overview
-1. Dynamic hedging - Uses a rolling OLS(Ordinary Least Squares Regression) to calculate the hedge ratio.
-2. Stationarity Testing - Uses the ADF(Augmented Dickey-Fuller) test to determine if the following assets having mean-reverting properties.
-3. Signal Generation - Developed signals that execute a buy or sell if the z-score of the spread goes above or below a certain point.
-   Short spread: Enter when Z > 2.75 (GD is overvalued relative to LMT)
-   Long spread: Enter when Z < -2.75 (GD is undervalued to LMT)
-   Exit: Close positions when the Z-score returns to a neutral zone (between -0.05 and 0.05)
+Logic
+1. GD/LMT are highly correlated stocks so we can bet on mean reversion.
+2. The spread is calculated using a rolling OLS regression to determine a hedge ratio.
+3. The signals enter at $\pm 2.75$ standard deviations from the mean and exit at $\pm 0.05$ standard deviations from the mean. 
 
 Key Features
-1. Rolling Beta Calculation:
-This script recalculates the hedge ratio over a 252-day rolling window which accounts for shifts in the market.
+1. Rolling Hedge Ratio
+This algorithim uses a 252-day rolling window to calculate the hedge ratio. This accounts for any strucutral shifts in the correlation between the stocks and ensures the spread remains stationary. 
 
 2. ADF(Augmented Dickey-Fuller) Test
 
-The ADF test is used to verify stationarity, to check whether two stocks possess mean reverting properties. We run the ADF on the residuals(spreads) of the two stocks and not prices(prices are non-stationary and follow a random walk pattern). By running the test in python using statsmodels.tsa.stattools, the test yielded the following:
+The ADF test is used to verify stationarity, to check whether two stocks possess mean reverting properties. To check this, we can create a null and alternative hypothesis.
+
+Ho: The two stocks are non-stationary and follow a random walk pattern(not mean reverting).
+Ha: The two stocks are stationary and do not follow a random walk pattern(mean reverting).
+
+We run the ADF on the residuals(spreads) of the two stocks and not prices(prices are non-stationary and follow a random walk pattern). By running the test in python using statsmodels.tsa.stattools, the test yielded the following:
     
 ADF Statistic: -3.45
 p-value: 0.008
@@ -26,9 +28,14 @@ ADF Statistic - Significantly negative so we can strongly reject the null hypoth
 p-value: <0.05 - This gives us 95% confidence that the pair is stationary and mean reverting, making the two a viable pair. 
 
 
-5. Sharpe Ratio: 2.11
+3. Performance Metrics
+This strategy was evaluated from June 2021 to January 2026.
+Sharpe Ratio: 2.11
+Risk-Free Rate: 4.18%
 
-6. Z-score visualization: 
+5. Z-score Spread Visualization: 
+
+
 <img width="383" height="206" alt="image" src="https://github.com/user-attachments/assets/f553c128-c76b-4e44-948d-d757d27aa409" />
 
 
@@ -37,7 +44,7 @@ yfinance
 pandas
 numpy
 matplotlib
-statsmodels.api
+statsmodels.tsa.stattools
 
 Getting Started
 1. Clone the repository
