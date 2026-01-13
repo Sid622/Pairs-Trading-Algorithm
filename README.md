@@ -15,8 +15,9 @@ This script recalculates the hedge ratio over a 252-day rolling window which acc
 
 3. Risk Metrics Calculates:
 Cumulative Returns: Growth of capital over the testing period
-Sharpe Ratio: Risk-adjusted return
-Z-score visualization: Tracking of entry and exit points
+Sharpe Ratio: 2.11
+Z-score visualization: <img width="383" height="206" alt="image" src="https://github.com/user-attachments/assets/f553c128-c76b-4e44-948d-d757d27aa409" />
+
 
 Libraries:
 yfinance
