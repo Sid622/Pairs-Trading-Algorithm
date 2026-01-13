@@ -17,12 +17,13 @@ This script recalculates the hedge ratio over a 252-day rolling window which acc
 
 The ADF test is used to verify stationarity, to check whether two stocks possess mean reverting properties. We run the ADF on the residuals(spreads) of the two stocks and not prices(prices are non-stationary and follow a random walk pattern). By running the test in python using statsmodels.tsa.stattools, the test yielded the following:
     
-   ADF Statistic: -3.45
-   p-value: 0.008
-   
+ADF Statistic: -3.45
+p-value: 0.008
+
 Interpreation:
-ADF Statistic: Significantly negative so we can strongly reject the null hypothesis.
-p-value: <0.05. This gives us 95% confidence that the pair is stationary and mean reverting, making the two a viable pair. 
+
+ADF Statistic - Significantly negative so we can strongly reject the null hypothesis.
+p-value: <0.05 - This gives us 95% confidence that the pair is stationary and mean reverting, making the two a viable pair. 
 
 
 5. Sharpe Ratio: 2.11
