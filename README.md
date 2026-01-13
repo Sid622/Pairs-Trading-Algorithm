@@ -1,13 +1,13 @@
 Pairs Trading Algorithim
-This project performs a statistical arbitrage strategy between Boeing (BA) and Airbus (AIR.PA). It uses a rolling hedge ratio calculated with a rolling OLS regression and executes trades based on Z-score mean reversion.
+This project performs a statistical arbitrage strategy between General Dynamics (GD) and Lockheed Martin (LMT). It uses a rolling hedge ratio calculated with a rolling OLS regression and executes trades based on Z-score mean reversion.
 
 Overview
 1. Dynamic hedging - Uses a rolling OLS(Ordinary Least Squares Regression) to calculate the hedge ratio.
 2. Stationarity Testing - Uses the ADF(Augmented Dickey-Fuller) test to determine if the following assets having mean-reverting properties.
 3. Signal Generation - Developed signals that execute a buy or sell if the z-score of the spread goes above or below a certain point.
-   Short spread: Enter when Z > 1.5 (Boeing is overvalued relative to Airbus)
-   Long spread: Enter when Z < -1.5 (Boeing is undervalued to Airbus)
-   Exit: Close positions when the Z-score returns to a neutral zone (between -0.25 and 0.25)
+   Short spread: Enter when Z > 2.75 (GD is overvalued relative to LMT)
+   Long spread: Enter when Z < -2.75 (GD is undervalued to LMT)
+   Exit: Close positions when the Z-score returns to a neutral zone (between -0.05 and 0.05)
 
 Key Features
 1. Rolling Beta Calculation:
