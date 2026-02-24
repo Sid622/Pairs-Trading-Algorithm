@@ -1,4 +1,5 @@
 Pairs Trading Algorithim
+
 This project performs a statistical arbitrage strategy between General Dynamics (GD) and Lockheed Martin (LMT). It identifies divergences in the historical relationship between these two defense stocks. When the price spread deviates greatly from its moving average, the algorithim enters a position, betting on mean reversion. 
 
 Logic
@@ -14,15 +15,16 @@ This algorithim uses a 252-day rolling window to calculate the hedge ratio. This
 
 The ADF test is used to verify stationarity, to check whether two stocks possess mean reverting properties. To check this, we can create a null and alternative hypothesis.
 
-Ho: The two stocks are non-stationary and follow a random walk pattern(not mean reverting).
-Ha: The two stocks are stationary and do not follow a random walk pattern(mean reverting).
+Ho: The two stocks are non-stationary and follow a random walk pattern (not mean reverting).
+
+Ha: The two stocks are stationary and do not follow a random walk pattern (mean reverting).
 
 We run the ADF on the residuals(spreads) of the two stocks and not prices(prices are non-stationary and follow a random walk pattern). By running the test in python using statsmodels.tsa.stattools, the test yielded the following:
     
 ADF Statistic: -3.45
 p-value: 0.008
 
-Interpreation:
+Interpretation:
 
 ADF Statistic - Significantly negative so we can strongly reject the null hypothesis.
 p-value: <0.05 - This gives us 95% confidence that the pair is stationary and mean reverting, making the two a viable pair. 
@@ -33,10 +35,12 @@ This strategy was evaluated from June 2021 to January 2026.
 Sharpe Ratio: 2.11
 Risk-Free Rate: 4.18%
 
-5. Z-score Spread Visualization: 
+4. Z-score Spread Visualization: 
 
 
 <img width="383" height="206" alt="image" src="https://github.com/user-attachments/assets/f553c128-c76b-4e44-948d-d757d27aa409" />
+
+The following trading opportunities can be visualized at $\pm 2.75$ standard deviations from the mean. When a stock goes above this range, we bet on mean reversion and short the stock. Similarly, if a stock goes below $\pm 2.75$ standard deviations, we long the stock. Finish this later
 
 
 Libraries:
