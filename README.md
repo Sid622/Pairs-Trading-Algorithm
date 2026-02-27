@@ -48,7 +48,7 @@ Risk-Free Rate: 4.18%
 Future Improvements:
 
 Log Prices - Change the spread moving from raw prices to log prices to improve risk management
-Stop Loss - If the spread goes above +/- $\pm 4$, it might signal a structural break that the stocks aren't cointegrated. This calls for an exit in the position.
+Stop Loss - If the spread goes above $\pm 4$, it might signal a structural break that the stocks aren't cointegrated. This calls for an exit in the position.
 
 
 Libraries:
